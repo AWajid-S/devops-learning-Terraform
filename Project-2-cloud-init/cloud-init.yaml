@@ -1,0 +1,22 @@
+#cloud-config
+package_update: true
+packages:
+  - nginx
+
+write_files:
+  - path: /var/www/html/index.html
+    content: |
+      <html>
+        <head>
+          <title>Cloud-Init Demo</title>
+        </head>
+        <body>
+          <h1>Wajid Terraform Project</h1>
+          <h2>NGINX installed with cloud-init and Terraform</h2>
+          <p>This EC2 instance was configured automatically on boot.</p>
+        </body>
+      </html>
+
+runcmd:
+  - systemctl enable nginx
+  - systemctl start nginx
